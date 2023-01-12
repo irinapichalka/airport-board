@@ -22,7 +22,7 @@ class SearchFlightsInput extends React.Component {
   render() {
     return (
       <div className="search">
-        <h2 className="search__title">ПОШУК РЕЙСУ</h2>
+        <h2 className="search__title title">ПОШУК РЕЙСУ</h2>
         <div className="search__line">
           <SearchSVG />
           <form name="searchFlightsForm" action="">
