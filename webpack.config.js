@@ -1,28 +1,39 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = (env, argv) => {
-  const isProduction = argv.mode === 'production';
+  const isProduction = argv.mode === "production";
   const config = {
-    entry: './src/index.jsx',
+    entry: "./src/index.jsx",
     output: {
-      filename: 'bundle.js',
-      publicPath: '/',
+      filename: "bundle.js",
+      publicPath: "/",
     },
     module: {
       rules: [
         {
           test: /.js?x$/,
-          use: ['babel-loader'],
+          use: ["babel-loader"],
         },
         {
           test: /.s?css$/,
           use: [
-            isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-            'css-loader',
-            'sass-loader',
+            isProduction ? MiniCssExtractPlugin.loader : "style-loader",
+            "css-loader",
+            "sass-loader",
+          ],
+        },
+        {
+          test: /\.svg$/,
+          use: [
+            {
+              loader: "svg-url-loader",
+              options: {
+                limit: 10000,
+              },
+            },
           ],
         },
       ],
@@ -31,11 +42,11 @@ module.exports = (env, argv) => {
       new webpack.ProgressPlugin(),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: "./src/index.html",
       }),
     ],
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: [".js", ".jsx"],
     },
     devServer: {
       hot: true,
@@ -47,7 +58,7 @@ module.exports = (env, argv) => {
   if (isProduction) {
     config.plugins.push(
       new MiniCssExtractPlugin({
-        filename: '[name].css',
+        filename: "[name].css",
       })
     );
   }

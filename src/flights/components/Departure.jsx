@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Table from "./Table";
 
 function Departure() {
-  return <div>Departure</div>;
+  return <Table />;
 }
 
 export default Departure;

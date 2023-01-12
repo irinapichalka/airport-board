@@ -30,7 +30,7 @@ const SearchResult = () => {
       <div className="search-result__dates">
         <div className="search-result__dates-calendar">
           <span
-            class="search-result__date-num show-calendar example-custom-input"
+            className="search-result__date-num show-calendar example-custom-input"
             type="date"
           >
             12/01
