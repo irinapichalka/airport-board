@@ -11,11 +11,9 @@ const Flights = ({ getFlights, flights, dateForSearch, changeDate }) => {
   useEffect(() => {
     console.log(moment(dateForSearch).format("DD-MM-YYYY"));
     getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
-  }, [dateForSearch]);
+    console.log(flights);
+  }, []);
 
-  console.log(flights.flights.body);
-  console.log(dateForSearch);
-  // console.log(typeof flights.body);
   return (
     <div className="page">
       <SearchFlightsInput />

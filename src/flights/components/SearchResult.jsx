@@ -7,12 +7,21 @@ import Departure from "./Departure";
 import DepartureSVG from "../../svg/DepartureSVG";
 import ArrivalSVG from "../../svg/ArrivalSVG";
 import moment from "moment";
+import { getFlights } from "../flights.actions";
 
-const SearchResult = ({ dateForSearch, setDateForSearch, getFlights }) => {
+const SearchResult = ({
+  dateForSearch,
+  setDateForSearch,
+  flights,
+  getFlights,
+}) => {
   const handleChange = (date) => {
-    console.log(date);
     setDateForSearch(date);
+    console.log(moment(dateForSearch).format("DD-MM-YYYY"));
+    getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
   };
+
+  console.log(flights.body);
 
   let today = moment().format("DD/MM");
   let tomorrow = moment().add(1, "days").format("DD/MM");
