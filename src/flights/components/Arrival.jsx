@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ArrivalSVG from "../../svg/ArrivalSVG";
+import Table from "./Table";
 
 function Arrival() {
-  return <div>Arrival</div>;
+  return <Table />;
 }
 
 export default Arrival;

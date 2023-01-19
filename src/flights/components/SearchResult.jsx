@@ -6,9 +6,18 @@ import Arrival from "./Arrival";
 import Departure from "./Departure";
 import DepartureSVG from "../../svg/DepartureSVG";
 import ArrivalSVG from "../../svg/ArrivalSVG";
+import moment from "moment";
 
-const SearchResult = () => {
-  const [startDate, setStartDate] = useState(new Date());
+const SearchResult = ({ dateForSearch, setDateForSearch, getFlights }) => {
+  const handleChange = (date) => {
+    console.log(date);
+    setDateForSearch(date);
+  };
+
+  let today = moment().format("DD/MM");
+  let tomorrow = moment().add(1, "days").format("DD/MM");
+  let yesterday = moment().add(-1, "days").format("DD/MM");
+
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <span
       className="search-result__date-num show-calendar example-custom-input"
@@ -16,23 +25,23 @@ const SearchResult = () => {
       onClick={onClick}
       ref={ref}
     >
-      {value}
+      {moment(value).format("DD/MM")}
     </span>
   ));
   return (
     <BrowserRouter>
       <div className="search-result">
         <div className="nav-list">
-          <Link className="nav-list__item nav-left" to="/departure">
+          <Link
+            className="nav-list__item nav-left nav-list__item-selected"
+            to="/departure"
+          >
             <span className="nav-list__item-icon">
               <DepartureSVG />
             </span>
             <span>виліт</span>
           </Link>
-          <Link
-            className="nav-list__item nav-right nav-list__item-selected"
-            to="/arrival"
-          >
+          <Link className="nav-list__item nav-right" to="/arrival">
             <span className="nav-list__item-icon selected-svg">
               <ArrivalSVG />
             </span>
@@ -44,23 +53,23 @@ const SearchResult = () => {
         <div className="search-result__dates-calendar">
           <div>
             <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
+              selected={dateForSearch}
+              onChange={handleChange}
               customInput={<ExampleCustomInput />}
             />
           </div>
         </div>
         <div className="search-result__dates-conteiner">
           <div className="search-result__date yesterday active-date">
-            <span className="search-result__date-num">10/01</span>
-            <span className="search-result__date-name">{` Вчора `}</span>
+            <span className="search-result__date-num">{yesterday}</span>
+            <span className="search-result__date-name">Вчора</span>
           </div>
           <div className="search-result__date today">
-            <span className="search-result__date-num">11/01</span>
+            <span className="search-result__date-num">{today}</span>
             <span className="search-result__date-name">Сьогодні</span>
           </div>
           <div className="search-result__date tomorrow">
-            <span className="search-result__date-num">12/01</span>
+            <span className="search-result__date-num">{tomorrow}</span>
             <span className="search-result__date-name">Завтра</span>
           </div>
         </div>

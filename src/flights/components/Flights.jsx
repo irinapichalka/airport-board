@@ -1,26 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import SearchFlightsInput from "./SearchFlightsInput";
 import SearchResult from "./SearchResult";
+import { flightsSelector, dateSelector } from "../flights.selectors";
+import * as flightsActions from "../flights.actions";
+import moment from "moment";
 
-class Flights extends React.Component {
-  render() {
-    return (
-      <div className="page">
-        <SearchFlightsInput />
-        <SearchResult />
-      </div>
-    );
-  }
-}
-/*
-TodoList.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.shape()),
-  getTaskList: PropTypes.func.isRequired,
-  updateTask: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired,
-  createTask: PropTypes.func.isRequired,
-};*/
+const Flights = ({ getFlights, flights, dateForSearch, changeDate }) => {
+  useEffect(() => {
+    console.log(moment(dateForSearch).format("DD-MM-YYYY"));
+    getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
+  }, [dateForSearch]);
 
-export default Flights;
+  console.log(flights.flights.body);
+  console.log(dateForSearch);
+  // console.log(typeof flights.body);
+  return (
+    <div className="page">
+      <SearchFlightsInput />
+      <SearchResult
+        flights={flights}
+        dateForSearch={dateForSearch}
+        setDateForSearch={changeDate}
+        getFlights={getFlights}
+      />
+    </div>
+  );
+};
+
+Flights.propTypes = {
+  flights: PropTypes.arrayOf(PropTypes.shape()),
+  getFlights: PropTypes.func.isRequired,
+};
+const mapDispatch = {
+  getFlights: flightsActions.getFlights,
+  changeDate: flightsActions.changeDate,
+};
+
+const mapState = (state) => {
+  return {
+    flights: flightsSelector(state),
+    dateForSearch: dateSelector(state),
+  };
+};
+
+export default connect(mapState, mapDispatch)(Flights);
