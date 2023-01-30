@@ -88,6 +88,7 @@ body {
       display: flex;
       padding-top: 10px;
       padding-bottom: 10px;
+      background: #fff;
 
       &-conteiner {
         display: flex;
@@ -1152,10 +1153,6 @@ body {
     padding-top: 35px;
   }
 }
-.table__shedule {
-  border-collapse: collapse;
-  width: 100%;
-}
 @media screen and (max-width: 1024px) {
   thead {
     display: none;
@@ -1163,6 +1160,17 @@ body {
 }
 .table {
   background: #fff;
+
+  &__shedule {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  &__flight {
+    flex-wrap: wrap;
+    padding: 5px 0;
+    font-size: 18px;
+  }
 }
 @media screen and (min-width: 1025px) {
   .table__title {
@@ -1185,11 +1193,7 @@ body {
     text-align: center;
   }
 }
-.table__flight {
-  flex-wrap: wrap;
-  padding: 5px 0;
-  font-size: 18px;
-}
+
 @media screen and (max-width: 1024px) {
   .table__flight {
     display: flex;

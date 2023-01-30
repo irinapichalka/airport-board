@@ -1,7 +1,16 @@
-import { FLIGHTS_RECIEVED, CHANGE_DATE } from "./flights.actions";
+import {
+  FLIGHTS_RECIEVED,
+  CHANGE_DATE,
+  GET_FLIGHTS_BY_CODE,
+} from "./flights.actions";
 const initialState = {
-  flights: {},
-  dateForSearch: new Date(),
+  flights: {
+    body: {
+      departure: [],
+      arrival: [],
+    },
+  },
+  dateForSearch: new Date(2020, 5, 0),
 };
 const flightsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,6 +23,20 @@ const flightsReducer = (state = initialState, action) => {
       return {
         ...state,
         dateForSearch: action.payload.newDate,
+      };
+    case GET_FLIGHTS_BY_CODE:
+      return {
+        ...state,
+        flights: {
+          body: {
+            departure: state.flights.body.departure.filter(
+              (flight) => flight["planeTypeID.code"] === action.payload.code
+            ),
+            arrival: state.flights.body.arrival.filter(
+              (flight) => flight["planeTypeID.code"] === action.payload.code
+            ),
+          },
+        },
       };
     default:
       return state;

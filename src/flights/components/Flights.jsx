@@ -6,34 +6,55 @@ import SearchResult from "./SearchResult";
 import { flightsSelector, dateSelector } from "../flights.selectors";
 import * as flightsActions from "../flights.actions";
 import moment from "moment";
+import { BrowserRouter, Route, useLocation, Link } from "react-router-dom";
+import Arrival from "./Arrival";
+import Departure from "./Departure";
 
-const Flights = ({ getFlights, flights, dateForSearch, changeDate }) => {
+const Flights = ({
+  getFlights,
+  flights,
+  dateForSearch,
+  changeDate,
+  getFlightsByCode,
+}) => {
   useEffect(() => {
     console.log(moment(dateForSearch).format("DD-MM-YYYY"));
     getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
-    console.log(flights);
+    //window.location.href = "http://departure";
   }, []);
-
+  console.log(flights);
+  console.log(flights.departure);
+  console.log(flights.arrival);
   return (
     <div className="page">
-      <SearchFlightsInput />
-      <SearchResult
-        flights={flights}
-        dateForSearch={dateForSearch}
-        setDateForSearch={changeDate}
-        getFlights={getFlights}
-      />
+      <BrowserRouter>
+        <SearchFlightsInput getFlightsByCode={getFlightsByCode} />
+        <SearchResult
+          flights={flights}
+          dateForSearch={dateForSearch}
+          setDateForSearch={changeDate}
+          getFlights={getFlights}
+          changeDate={changeDate}
+        />
+        <Route path="/departure">
+          <Departure flights={flights.departure} />
+        </Route>
+        <Route path="/arrival">
+          <Arrival flights={flights.arrival} />
+        </Route>
+      </BrowserRouter>
     </div>
   );
 };
 
 Flights.propTypes = {
-  flights: PropTypes.arrayOf(PropTypes.shape()),
+  flights: PropTypes.shape(),
   getFlights: PropTypes.func.isRequired,
 };
 const mapDispatch = {
   getFlights: flightsActions.getFlights,
   changeDate: flightsActions.changeDate,
+  getFlightsByCode: flightsActions.getFlightsByCode,
 };
 
 const mapState = (state) => {

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useLocation } from "react";
+import moment from "moment";
 
 const Table = ({ flights }) => {
   return (
@@ -17,39 +18,41 @@ const Table = ({ flights }) => {
         </thead>
         <tbody>
           {flights.map((flight) => (
-            <tr className="table__flight">
-              <td className="table__flight-terminal" dataTerminal={flight.term}>
+            <tr key={flight.ID} className="table__flight">
+              <td className="table__flight-terminal" dataterminal={flight.term}>
                 <span
                   className="table__flight-terminal-type"
-                  dataTerminal={flight.term}
+                  dataterminal={flight.term}
                 >
                   {flight.term}
                 </span>
               </td>
               <td className="table__flight-time-field">
-                {flight.timeDepShedule}
+                {flight.actual.slice(11, 16)}
               </td>
               <td className="table__flight-way">
-                {flight.airportToID.name_en}
+                {flight["airportToID.name"] || flight["airportFromID.name"]}
               </td>
               <td className="table__flight-mob mob"></td>
-              <td className="table__flight-status-field">{`Вилетів ${flight.timeTakeofFact}`}</td>
-              <td className="table__flight-number-mob mob">
-                {flight.codeShare}
+              <td className="table__flight-status-field">
+                {`Вилетів о ${flight.timeToStand.slice(11, 16)}`}
               </td>
+              <td className="table__flight-number-mob mob">{flight.status}</td>
               <td className="table__flight-company">
                 <div className="table__flight-company-info">
                   <img
                     className="table__flight-company-logo"
-                    src={flight.logoName}
-                    alt=""
+                    src={`https://api.iev.aero${flight.logo}`}
+                    alt="logo"
                   />
                   <span className="table__flight-company-name">
-                    {flight.icao}
+                    {flight["carrierID.code"]}
                   </span>
                 </div>
               </td>
-              <td className="table__flight-number">{flight.codeShare}</td>
+              <td className="table__flight-number">
+                {flight["planeTypeID.code"]}
+              </td>
               <td className="table__flight-more">
                 <a className="table__flight-more-link" href="">
                   <span>Деталі рейсу</span>

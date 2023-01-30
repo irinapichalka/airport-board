@@ -9,8 +9,19 @@ function ArrivalSVG() {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="Page-1" stroke="none" strokeWidth="1" fillRule="evenodd">
-        <g id="Group" transform="translate(-4.000000, -7.000000)">
+      <g
+        id="Page-1"
+        stroke="none"
+        strokeWidth="1"
+        fill="none"
+        fillRule="evenodd"
+      >
+        <g
+          id="Group"
+          transform="translate(-4.000000, -7.000000)"
+          fill="#FFFFFF"
+          fillRule="nonzero"
+        >
           <g id="Path-402"></g>
           <path
             data-v-7746f986=""
