@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import SearchSVG from "../../svg/SearchSVG";
+import moment from "moment";
+import qs from "qs";
 
-const SearchFlightsInput = ({ getFlightsByCode }) => {
-  const [value, setValue] = useState("");
-
+const SearchFlightsInput = ({
+  getFlightsByCode,
+  dateForSearch,
+  code,
+  setCode,
+  getFlights,
+}) => {
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setCode(event.target.value);
   };
 
   const handleSearchFlights = (event) => {
     event.preventDefault();
-    getFlightsByCode(value);
-    console.log(value);
+    if (code === "") {
+      getFlights(dateForSearch);
+      return;
+    } else getFlightsByCode(code);
   };
 
   return (
@@ -24,7 +33,7 @@ const SearchFlightsInput = ({ getFlightsByCode }) => {
             className="search__line-input"
             type="text"
             placeholder="Номер рейсу або місто"
-            value={value}
+            value={code}
             onChange={(event) => handleChange(event)}
           />
           <button

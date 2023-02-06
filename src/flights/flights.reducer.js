@@ -2,6 +2,7 @@ import {
   FLIGHTS_RECIEVED,
   CHANGE_DATE,
   GET_FLIGHTS_BY_CODE,
+  SET_CODE,
 } from "./flights.actions";
 const initialState = {
   flights: {
@@ -11,6 +12,7 @@ const initialState = {
     },
   },
   dateForSearch: new Date(2020, 5, 0),
+  code: "",
 };
 const flightsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -23,6 +25,11 @@ const flightsReducer = (state = initialState, action) => {
       return {
         ...state,
         dateForSearch: action.payload.newDate,
+      };
+    case SET_CODE:
+      return {
+        ...state,
+        code: action.payload.code,
       };
     case GET_FLIGHTS_BY_CODE:
       return {

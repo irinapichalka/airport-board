@@ -19,10 +19,13 @@ const Table = ({ flights }) => {
         <tbody>
           {flights.map((flight) => (
             <tr key={flight.ID} className="table__flight">
-              <td className="table__flight-terminal" dataterminal={flight.term}>
+              <td
+                className="table__flight-terminal"
+                data-terminal={flight.term}
+              >
                 <span
                   className="table__flight-terminal-type"
-                  dataterminal={flight.term}
+                  data-terminal={flight.term}
                 >
                   {flight.term}
                 </span>

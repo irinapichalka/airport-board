@@ -5,3 +5,7 @@ export const flightsSelector = (state) => {
 export const dateSelector = (state) => {
   return state.flights.dateForSearch;
 };
+
+export const codeSelector = (state) => {
+  return state.flights.code;
+};
