@@ -55,7 +55,7 @@ const Flights = ({
   }, [code, dateForSearch]);
 
   return (
-    <div className="page">
+    <>
       <SearchFlightsInput
         getFlightsByCode={getFlightsByCode}
         dateForSearch={dateForSearch}
@@ -79,7 +79,7 @@ const Flights = ({
       <Route exact path="/">
         <Redirect to="/departure" />
       </Route>
-    </div>
+    </>
   );
 };
 

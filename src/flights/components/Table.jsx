@@ -2,6 +2,7 @@ import React, { useLocation } from "react";
 import moment from "moment";
 
 const Table = ({ flights }) => {
+  console.log(flights);
   return (
     <div className="table">
       <table className="table__shedule">
@@ -34,7 +35,7 @@ const Table = ({ flights }) => {
                 {flight.actual.slice(11, 16)}
               </td>
               <td className="table__flight-way">
-                {flight["airportToID.name"] || flight["airportFromID.name"]}
+                {flight["airportToID.city"] || flight["airportFromID.city"]}
               </td>
               <td className="table__flight-mob mob"></td>
               <td className="table__flight-status-field">

@@ -41,32 +41,30 @@ const SearchResult = ({
     isArrival = true;
   }
   return (
-    <>
-      <div className="search-result">
-        <div className="nav-list">
-          <Link
-            className={`nav-list__item nav-left ${
-              isDeparture ? "nav-list__item-selected" : ""
-            }`}
-            to="/departure"
-          >
-            <span className="nav-list__item-icon">
-              <DepartureSVG />
-            </span>
-            <span>виліт</span>
-          </Link>
-          <Link
-            className={`nav-list__item nav-right ${
-              isArrival ? "nav-list__item-selected" : ""
-            }`}
-            to="/arrival"
-          >
-            <span className="nav-list__item-icon">
-              <ArrivalSVG />
-            </span>
-            <span>приліт</span>
-          </Link>
-        </div>
+    <div className="search-result">
+      <div className="nav-list">
+        <Link
+          className={`nav-list__item nav-left ${
+            isDeparture ? "nav-list__item-selected" : ""
+          }`}
+          to="/departure"
+        >
+          <span className="nav-list__item-icon">
+            <DepartureSVG />
+          </span>
+          <span>виліт</span>
+        </Link>
+        <Link
+          className={`nav-list__item nav-right ${
+            isArrival ? "nav-list__item-selected" : ""
+          }`}
+          to="/arrival"
+        >
+          <span className="nav-list__item-icon">
+            <ArrivalSVG />
+          </span>
+          <span>приліт</span>
+        </Link>
       </div>
       <div className="search-result__dates">
         <div className="search-result__dates-calendar">
@@ -80,7 +78,7 @@ const SearchResult = ({
         </div>
         <DatesPanel handleChange={handleChange} />
       </div>
-    </>
+    </div>
   );
 };
 
