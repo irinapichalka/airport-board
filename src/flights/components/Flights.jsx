@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import SearchFlightsInput from "./SearchFlightsInput";
 import SearchResult from "./SearchResult";
-import { useHistory } from "react-router-dom";
-import * as qs from "qs";
 import {
   flightsSelector,
   dateSelector,
@@ -12,15 +10,10 @@ import {
 } from "../flights.selectors";
 import * as flightsActions from "../flights.actions";
 import moment from "moment";
-import {
-  BrowserRouter,
-  Route,
-  useLocation,
-  Link,
-  Redirect,
-} from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import Arrival from "./Arrival";
 import Departure from "./Departure";
+import { useHistory } from "react-router-dom";
 
 const Flights = ({
   getFlights,
@@ -34,15 +27,16 @@ const Flights = ({
   useEffect(() => {
     getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
   }, []);
-
   const history = useHistory();
   console.log(history.location.search);
+
   useEffect(() => {
-    const parsed = qs.parse(history.location.search.substr(1));
-    const [day, month, year] = parsed.date.split("-");
-    changeDate(new Date(+year, month - 1, +day));
-    setCode(parsed.search);
-  }, []);
+    console.log(code);
+    //getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
+    if (code !== "") {
+      getFlightsByCode(code);
+    }
+  }, [code]);
 
   useEffect(() => {
     history.push({
@@ -69,12 +63,27 @@ const Flights = ({
         setDateForSearch={changeDate}
         getFlights={getFlights}
         changeDate={changeDate}
+        code={code}
       />
       <Route path="/departure">
-        <Departure flights={flights.departure} />
+        <Departure
+          flights={flights.departure}
+          dateForSearch={dateForSearch}
+          code={code}
+          changeDate={changeDate}
+          getFlights={getFlights}
+          setCode={setCode}
+        />
       </Route>
       <Route path="/arrival">
-        <Arrival flights={flights.arrival} />
+        <Arrival
+          flights={flights.arrival}
+          dateForSearch={dateForSearch}
+          code={code}
+          changeDate={changeDate}
+          getFlights={getFlights}
+          setCode={setCode}
+        />
       </Route>
       <Route exact path="/">
         <Redirect to="/departure" />

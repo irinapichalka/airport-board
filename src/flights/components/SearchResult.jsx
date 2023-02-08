@@ -13,10 +13,14 @@ const SearchResult = ({
   setDateForSearch,
   flights,
   getFlights,
+  code,
 }) => {
   const handleChange = (date) => {
     setDateForSearch(date);
     getFlights(moment(date).format("DD-MM-YYYY"));
+    if (code !== "") {
+      getFlightsByCode(code);
+    }
   };
 
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (

@@ -53,16 +53,3 @@ export const getFlightsByCode = (code) => {
   };
   return action;
 };
-
-/*export const createTask = (text) => {
-  const thunkAction = function (dispatch) {
-    const taskData = {
-      text,
-      done: false,
-      createdAt: new Date().toISOString(),
-    };
-    tasksGateway.createTask(taskData).then(() => dispatch(getTaskList()));
-  };
-
-  return thunkAction;
-};*/

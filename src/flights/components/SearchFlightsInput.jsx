@@ -17,10 +17,8 @@ const SearchFlightsInput = ({
 
   const handleSearchFlights = (event) => {
     event.preventDefault();
-    if (code === "") {
-      getFlights(dateForSearch);
-      return;
-    } else getFlightsByCode(code);
+    // getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
+    if (code !== "") getFlightsByCode(code);
   };
 
   return (
