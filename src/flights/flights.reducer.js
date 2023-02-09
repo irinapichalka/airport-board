@@ -1,9 +1,4 @@
-import {
-  FLIGHTS_RECIEVED,
-  CHANGE_DATE,
-  GET_FLIGHTS_BY_CODE,
-  SET_CODE,
-} from "./flights.actions";
+import { FLIGHTS_RECIEVED, CHANGE_DATE, SET_CODE } from "./flights.actions";
 const initialState = {
   flights: {
     body: {
@@ -31,20 +26,6 @@ const flightsReducer = (state = initialState, action) => {
         ...state,
         code: action.payload.code,
       };
-    /*case GET_FLIGHTS_BY_CODE:
-      return {
-        ...state,
-        flights: {
-          body: {
-            departure: state.flights.body.departure.filter(
-              (flight) => flight["planeTypeID.code"] === action.payload.code
-            ),
-            arrival: state.flights.body.arrival.filter(
-              (flight) => flight["planeTypeID.code"] === action.payload.code
-            ),
-          },
-        },
-      };*/
     default:
       return state;
   }
