@@ -1,8 +1,6 @@
 import React, { forwardRef } from "react";
-import { BrowserRouter, Route, useLocation, Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
-//import "react-datepicker/dist/react-datepicker.css";
-
 import DepartureSVG from "../../svg/DepartureSVG";
 import ArrivalSVG from "../../svg/ArrivalSVG";
 import moment from "moment";
@@ -11,16 +9,12 @@ import DatesPanel from "./DatesPanel";
 const SearchResult = ({
   dateForSearch,
   setDateForSearch,
-  flights,
   getFlights,
   code,
 }) => {
   const handleChange = (date) => {
     setDateForSearch(date);
     getFlights(moment(date).format("DD-MM-YYYY"));
-    if (code !== "") {
-      getFlightsByCode(code);
-    }
   };
 
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -51,7 +45,9 @@ const SearchResult = ({
           className={`nav-list__item nav-left ${
             isDeparture ? "nav-list__item-selected" : ""
           }`}
-          to="/departure"
+          to={`/departure?search=${code}&date=${moment(dateForSearch).format(
+            "DD-MM-YYYY"
+          )}`}
         >
           <span className="nav-list__item-icon">
             <DepartureSVG />
@@ -62,7 +58,9 @@ const SearchResult = ({
           className={`nav-list__item nav-right ${
             isArrival ? "nav-list__item-selected" : ""
           }`}
-          to="/arrival"
+          to={`/arrival?search=${code}&date=${moment(dateForSearch).format(
+            "DD-MM-YYYY"
+          )}`}
         >
           <span className="nav-list__item-icon">
             <ArrivalSVG />

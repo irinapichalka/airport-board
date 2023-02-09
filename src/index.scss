@@ -137,45 +137,43 @@ body {
 @media screen and (min-width: 1025px) {
   .search {
     width: 760px;
-  }
-}
 
-@media screen and (min-width: 1025px) {
-  .search__line-svg {
-    width: 44px;
-    left: 15px;
-  }
-}
+    &__line-svg {
+      width: 44px;
+      left: 15px;
+    }
 
-@media screen and (min-width: 1025px) {
-  .search__line-input {
-    padding-left: 70px;
-    padding-right: 220px;
-    width: 100%;
-    height: 80px;
-    font-size: 24px;
-    border-radius: 0 80px 0 0;
-  }
-}
+    &__line-input {
+      padding-left: 70px;
+      padding-right: 220px;
+      width: 100%;
+      height: 80px;
+      font-size: 24px;
+      border-radius: 0 80px 0 0;
+    }
 
-@media screen and (min-width: 1025px) {
-  .search__line-button {
-    display: block;
-    text-transform: uppercase;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    font-weight: 700;
-    width: 200px;
-    background: #1eb7ee;
-    color: #fff;
-    font-size: 20px;
-    border-radius: 0 80px 0 0;
-    text-align: left;
-    padding: 0 20px;
-    cursor: pointer;
+    &__line-button {
+      display: block;
+      text-transform: uppercase;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border: none;
+      font-weight: 700;
+      width: 200px;
+      background: #1eb7ee;
+      color: #fff;
+      font-size: 20px;
+      border-radius: 0 80px 0 0;
+      text-align: left;
+      padding: 0 20px;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      &:hover {
+        border-radius: 0 40px 0 0;
+      }
+    }
   }
 }
 
@@ -193,6 +191,16 @@ body {
     flex: 1 1 auto;
     line-height: 50px;
     font-size: 14px;
+
+    &-icon {
+      display: flex;
+
+      & svg {
+        margin: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
 
     &:hover {
       background: #1eb7ee;
@@ -285,14 +293,7 @@ body {
     border-radius: 60px 60px 0 0;
   }
 }
-.nav-list__item-icon {
-  display: flex;
-}
-.nav-list__item-icon svg {
-  margin: auto;
-  margin-left: 10px;
-  margin-right: 10px;
-}
+
 .search-result__dates-calendar .react-datepicker {
   position: absolute;
 }
@@ -1137,25 +1138,82 @@ body {
   font-weight: 700;
   padding: 0 50px;
   background: #fff;
+
+  &__element {
+    display: block;
+    margin: auto;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 4px solid #000;
+    border-bottom-color: transparent;
+    animation: rotate 1s linear infinite;
+  }
 }
-.spinner__element {
-  display: block;
-  margin: auto;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 4px solid #000;
-  border-bottom-color: transparent;
-  animation: rotate 1s linear infinite;
-}
+
 @media screen and (min-width: 1025px) {
   .table {
     padding-top: 35px;
+
+    &__title {
+      color: #95989a;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 0.75rem;
+      height: 48px;
+      white-space: nowrap;
+      text-align: left;
+
+      &:first-of-type {
+        text-align: center;
+      }
+    }
+
+    &__flight {
+      flex-wrap: nowrap;
+      & td {
+        line-height: 40px;
+        padding: 0.75rem;
+
+        &:first-of-type {
+          text-align: center;
+        }
+      }
+    }
+  }
+  .mob {
+    display: none;
   }
 }
 @media screen and (max-width: 1024px) {
   thead {
     display: none;
+  }
+  .table__title:first-of-type {
+    display: none;
+  }
+  .table__flight {
+    display: flex;
+
+    & td {
+      width: 50%;
+
+      &:first-of-type {
+        display: none;
+      }
+    }
+
+    &-company-name {
+      display: none;
+    }
+
+    &-more {
+      display: none;
+    }
+
+    &-number {
+      display: none;
+    }
   }
 }
 .table {
@@ -1170,92 +1228,69 @@ body {
     flex-wrap: wrap;
     padding: 5px 0;
     font-size: 18px;
-  }
-}
-@media screen and (min-width: 1025px) {
-  .table__title {
-    color: #95989a;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 0.75rem;
-    height: 48px;
-    white-space: nowrap;
-    text-align: left;
-  }
-}
-@media screen and (max-width: 1024px) {
-  .table__title:first-of-type {
-    display: none;
-  }
-}
-@media screen and (min-width: 1025px) {
-  .table__title:first-of-type {
-    text-align: center;
+    &:hover {
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+    &:hover &-more span {
+      color: #1eb7ee;
+      border-bottom: 1px solid #1eb7ee;
+      opacity: 1;
+    }
+    &-more span {
+      opacity: 0;
+    }
+    & td {
+      line-height: 30px;
+      border: 0;
+      white-space: nowrap;
+      text-align: left;
+      padding: 5px;
+    }
+    &-way {
+      white-space: pre-line !important;
+    }
+
+    &-terminal-type {
+      border-radius: 50%;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 35px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    &-company {
+      display: flex;
+
+      &-info {
+        display: flex;
+        margin: auto 0;
+      }
+
+      &-logo {
+        margin-right: 5px;
+        height: 24px;
+      }
+    }
+
+    &-name {
+      font-size: 16px;
+    }
+
+    &-number-mob {
+      color: #95989a;
+      font-size: 14px;
+      line-height: 40px;
+    }
+
+    &-more-link {
+      text-decoration: none;
+    }
   }
 }
 
-@media screen and (max-width: 1024px) {
-  .table__flight {
-    display: flex;
-  }
-}
-@media screen and (min-width: 1025px) {
-  .table__flight {
-    flex-wrap: nowrap;
-  }
-}
-.table__flight:hover {
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-.table__flight:hover .table__flight-more span {
-  color: #1eb7ee;
-  border-bottom: 1px solid #1eb7ee;
-  opacity: 1;
-}
-.table__flight-more span {
-  opacity: 0;
-}
-.table__flight td {
-  line-height: 30px;
-  border: 0;
-  white-space: nowrap;
-  text-align: left;
-  padding: 5px;
-}
-@media screen and (max-width: 1024px) {
-  .table__flight td {
-    width: 50%;
-  }
-}
-@media screen and (min-width: 1025px) {
-  .table__flight td {
-    line-height: 40px;
-    padding: 0.75rem;
-  }
-}
-.table__flight-way {
-  white-space: pre-line !important;
-}
-@media screen and (max-width: 1024px) {
-  .table__flight td:first-of-type {
-    display: none;
-  }
-}
-@media screen and (min-width: 1025px) {
-  .table__flight td:first-of-type {
-    text-align: center;
-  }
-}
-.table__flight-terminal-type {
-  border-radius: 50%;
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 35px;
-  font-size: 22px;
-  font-weight: 700;
-}
 .table__flight td:first-of-type span[data-terminal="A"] {
   color: #63c745;
   border: 1px solid #63c745;
@@ -1267,45 +1302,7 @@ body {
 .table__flight:nth-of-type(odd) {
   background-color: rgba(0, 102, 135, 0.1);
 }
-.table__flight-company {
-  display: flex;
-}
-.table__flight-company-info {
-  display: flex;
-  margin: auto 0;
-}
-@media screen and (max-width: 1024px) {
-  .table__flight-company-name {
-    display: none;
-  }
-}
-.table__flight-company-logo {
-  margin-right: 5px;
-  height: 24px;
-}
-.table__flight-name {
-  font-size: 16px;
-}
-@media screen and (max-width: 1024px) {
-  .table__flight-more {
-    display: none;
-  }
-}
-@media screen and (max-width: 1024px) {
-  .table__flight-number {
-    display: none;
-  }
-}
-.table__flight-number-mob {
-  color: #95989a;
-  font-size: 14px;
-  line-height: 40px;
-}
-@media screen and (min-width: 1025px) {
-  .mob {
-    display: none;
-  }
-}
+
 .no-found {
   min-height: 300px;
   display: flex;
@@ -1316,7 +1313,4 @@ body {
   font-weight: 700;
   padding: 0 50px;
   background: #fff;
-}
-.table__flight-more-link {
-  text-decoration: none;
 }

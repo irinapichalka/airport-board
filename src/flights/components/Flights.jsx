@@ -20,49 +20,34 @@ const Flights = ({
   flights,
   dateForSearch,
   changeDate,
-  getFlightsByCode,
   code,
   setCode,
 }) => {
   useEffect(() => {
     getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
   }, []);
+
   const history = useHistory();
-  console.log(history.location.search);
-
-  useEffect(() => {
-    console.log(code);
-    //getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
-    if (code !== "") {
-      getFlightsByCode(code);
-    }
-  }, [code]);
-
   useEffect(() => {
     history.push({
       search: `?search=${code}&date=${moment(dateForSearch).format(
         "DD-MM-YYYY"
       )}`,
     });
-    console.log(dateForSearch);
-    console.log(code);
-  }, [code, dateForSearch]);
+  }, []);
 
   return (
     <>
       <SearchFlightsInput
-        getFlightsByCode={getFlightsByCode}
         dateForSearch={dateForSearch}
         code={code}
         setCode={setCode}
         getFlights={getFlights}
       />
       <SearchResult
-        flights={flights}
         dateForSearch={dateForSearch}
         setDateForSearch={changeDate}
         getFlights={getFlights}
-        changeDate={changeDate}
         code={code}
       />
       <Route path="/departure">
@@ -95,11 +80,14 @@ const Flights = ({
 Flights.propTypes = {
   flights: PropTypes.shape(),
   getFlights: PropTypes.func.isRequired,
+  dateForSearch: PropTypes.instanceOf(Date).isRequired,
+  changeDate: PropTypes.func.isRequired,
+  code: PropTypes.string.isRequired,
+  setCode: PropTypes.func.isRequired,
 };
 const mapDispatch = {
   getFlights: flightsActions.getFlights,
   changeDate: flightsActions.changeDate,
-  getFlightsByCode: flightsActions.getFlightsByCode,
   setCode: flightsActions.setCode,
 };
 

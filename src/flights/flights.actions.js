@@ -33,18 +33,7 @@ export const setCode = (code) => {
   };
   return action;
 };
-
-export const getFlights = (date) => {
-  const thunkAction = function (dispatch) {
-    flightsGateway
-      .fetchFlights(date)
-      .then((flights) => dispatch(flightsRecieved(flights)));
-  };
-
-  return thunkAction;
-};
-
-export const getFlightsByCode = (code) => {
+/*export const getFlightsByCode = (code) => {
   const action = {
     type: GET_FLIGHTS_BY_CODE,
     payload: {
@@ -52,4 +41,14 @@ export const getFlightsByCode = (code) => {
     },
   };
   return action;
+};*/
+
+export const getFlights = (date, code) => {
+  const thunkAction = function (dispatch) {
+    flightsGateway
+      .fetchFlights(date)
+      .then((flights) => dispatch(flightsRecieved(flights)));
+  };
+
+  return thunkAction;
 };

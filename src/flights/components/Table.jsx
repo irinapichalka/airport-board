@@ -1,8 +1,13 @@
-import React, { useLocation } from "react";
-import moment from "moment";
+import React from "react";
 
-const Table = ({ flights }) => {
-  console.log(flights);
+const Table = ({ flights, code, text }) => {
+  let filteredFlights = flights;
+  if (code !== "") {
+    filteredFlights = flights.filter(
+      (flight) => flight["planeTypeID.code"] === code
+    );
+  }
+
   return (
     <div className="table">
       <table className="table__shedule">
@@ -18,7 +23,7 @@ const Table = ({ flights }) => {
           </tr>
         </thead>
         <tbody>
-          {flights.map((flight) => (
+          {filteredFlights.map((flight) => (
             <tr key={flight.ID} className="table__flight">
               <td
                 className="table__flight-terminal"
@@ -39,7 +44,7 @@ const Table = ({ flights }) => {
               </td>
               <td className="table__flight-mob mob"></td>
               <td className="table__flight-status-field">
-                {`Вилетів о ${flight.timeToStand.slice(11, 16)}`}
+                {`${text} ${flight.timeToStand.slice(11, 16)}`}
               </td>
               <td className="table__flight-number-mob mob">{flight.status}</td>
               <td className="table__flight-company">
@@ -58,7 +63,11 @@ const Table = ({ flights }) => {
                 {flight["planeTypeID.code"]}
               </td>
               <td className="table__flight-more">
-                <a className="table__flight-more-link" href="">
+                <a
+                  className="table__flight-more-link"
+                  href=""
+                  onClick={() => alert("Тут будуть деталі про рейс 🧐")}
+                >
                   <span>Деталі рейсу</span>
                 </a>
               </td>

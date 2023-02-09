@@ -31,7 +31,7 @@ const flightsReducer = (state = initialState, action) => {
         ...state,
         code: action.payload.code,
       };
-    case GET_FLIGHTS_BY_CODE:
+    /*case GET_FLIGHTS_BY_CODE:
       return {
         ...state,
         flights: {
@@ -44,7 +44,7 @@ const flightsReducer = (state = initialState, action) => {
             ),
           },
         },
-      };
+      };*/
     default:
       return state;
   }

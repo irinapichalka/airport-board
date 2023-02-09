@@ -1,6 +1,6 @@
 import React from "react";
 
-const Table = () => {
+const NoFound = () => {
   return (
     <div className="no-found">
       <span className="no-found__text">Немає рейсів</span>
@@ -8,4 +8,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default NoFound;

@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import SearchSVG from "../../svg/SearchSVG";
 import moment from "moment";
-import qs from "qs";
 
-const SearchFlightsInput = ({
-  getFlightsByCode,
-  dateForSearch,
-  code,
-  setCode,
-  getFlights,
-}) => {
+const SearchFlightsInput = ({ dateForSearch, code, setCode, getFlights }) => {
   const handleChange = (event) => {
     setCode(event.target.value);
   };
 
   const handleSearchFlights = (event) => {
     event.preventDefault();
-    // getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
-    if (code !== "") getFlightsByCode(code);
+    getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
   };
 
   return (
