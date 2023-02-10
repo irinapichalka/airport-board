@@ -1,4 +1,5 @@
 import { FLIGHTS_RECIEVED, CHANGE_DATE, SET_CODE } from "./flights.actions";
+
 const initialState = {
   flights: {
     body: {

@@ -1,4 +1,5 @@
 import * as flightsGateway from "./fllightsGateway";
+
 export const FLIGHTS_RECIEVED = "FLIGHTS_RECIEVED";
 export const CHANGE_DATE = "CHANGE_DATE";
 export const SET_CODE = "SET_CODE";
@@ -33,7 +34,7 @@ export const setCode = (code) => {
   return action;
 };
 
-export const getFlights = (date, code) => {
+export const getFlights = (date) => {
   const thunkAction = function (dispatch) {
     flightsGateway
       .fetchFlights(date)

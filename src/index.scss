@@ -1240,11 +1240,11 @@ body {
       opacity: 0;
     }
     & td {
-      line-height: 30px;
       border: 0;
       white-space: nowrap;
       text-align: left;
-      padding: 5px;
+      line-height: 40px;
+      padding: 0.75rem;
     }
     &-way {
       white-space: pre-line !important;
