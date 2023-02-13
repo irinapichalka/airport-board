@@ -78,7 +78,7 @@ const Flights = ({
 };
 
 Flights.propTypes = {
-  flights: PropTypes.shape(),
+  flights: PropTypes.shape().isRequired,
   getFlights: PropTypes.func.isRequired,
   dateForSearch: PropTypes.instanceOf(Date).isRequired,
   changeDate: PropTypes.func.isRequired,

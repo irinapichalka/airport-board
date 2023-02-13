@@ -5,6 +5,7 @@ import DepartureSVG from "../../svg/DepartureSVG";
 import ArrivalSVG from "../../svg/ArrivalSVG";
 import moment from "moment";
 import DatesPanel from "./DatesPanel";
+import PropTypes from "prop-types";
 
 const SearchResult = ({
   dateForSearch,
@@ -83,5 +84,14 @@ const SearchResult = ({
     </div>
   );
 };
+SearchResult.propTypes = {
+  dateForSearch: PropTypes.instanceOf(Date).isRequired,
+  code: PropTypes.string,
+  getFlights: PropTypes.func.isRequired,
+  setDateForSearch: PropTypes.func.isRequired,
+};
 
+SearchResult.defaultProps = {
+  code: "",
+};
 export default SearchResult;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Table = ({ flights, code, text }) => {
   let filteredFlights = flights;
@@ -77,6 +78,16 @@ const Table = ({ flights, code, text }) => {
       </table>
     </div>
   );
+};
+
+Table.propTypes = {
+  flights: PropTypes.array.isRequired,
+  code: PropTypes.string,
+  text: PropTypes.string.isRequired,
+};
+
+Table.defaultProps = {
+  code: "",
 };
 
 export default Table;

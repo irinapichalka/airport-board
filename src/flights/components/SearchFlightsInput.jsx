@@ -1,6 +1,7 @@
 import React from "react";
 import SearchSVG from "../../svg/SearchSVG";
 import moment from "moment";
+import PropTypes from "prop-types";
 
 const SearchFlightsInput = ({ dateForSearch, code, setCode, getFlights }) => {
   const handleChange = (event) => {
@@ -36,6 +37,17 @@ const SearchFlightsInput = ({ dateForSearch, code, setCode, getFlights }) => {
       </div>
     </div>
   );
+};
+
+SearchFlightsInput.propTypes = {
+  dateForSearch: PropTypes.instanceOf(Date).isRequired,
+  code: PropTypes.string,
+  getFlights: PropTypes.func.isRequired,
+  setCode: PropTypes.func.isRequired,
+};
+
+SearchFlightsInput.defaultProps = {
+  code: "",
 };
 
 export default SearchFlightsInput;
