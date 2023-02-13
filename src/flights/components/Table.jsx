@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import NoFound from "./NoFound";
 
 const Table = ({ flights, code, text }) => {
   let filteredFlights = flights;
@@ -7,6 +8,9 @@ const Table = ({ flights, code, text }) => {
     filteredFlights = flights.filter(
       (flight) => flight["planeTypeID.code"] === code
     );
+  }
+  if (filteredFlights.length === 0) {
+    return <NoFound />;
   }
 
   return (

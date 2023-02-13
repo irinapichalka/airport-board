@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Table from "./Table";
-import NoFound from "./NoFound";
 import { useHistory } from "react-router-dom";
 import * as qs from "qs";
 import moment from "moment";
@@ -26,9 +25,6 @@ function Departure({ flights, dateForSearch, code, changeDate, setCode }) {
 
   const text = "Вилетів о";
 
-  if (flights.length === 0) {
-    return <NoFound />;
-  }
   return <Table flights={flights} code={code} text={text} />;
 }
 

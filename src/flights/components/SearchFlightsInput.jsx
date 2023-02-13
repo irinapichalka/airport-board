@@ -1,13 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchSVG from "../../svg/SearchSVG";
 import moment from "moment";
 import PropTypes from "prop-types";
 
 const SearchFlightsInput = ({ dateForSearch, code, setCode, getFlights }) => {
-  const inputRef = useRef(null);
+  const [text, setMessage] = useState(code);
+
+  const handleChange = (event) => {
+    setMessage(event.target.value);
+  };
   const handleSearchFlights = (event) => {
     event.preventDefault();
-    setCode(inputRef.current.value);
+    setCode(text);
     getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
   };
 
@@ -20,8 +24,9 @@ const SearchFlightsInput = ({ dateForSearch, code, setCode, getFlights }) => {
           <input
             className="search__line-input"
             type="text"
-            placeholder="Номер рейсу"
-            ref={inputRef}
+            placeholder={code}
+            value={text}
+            onChange={handleChange}
           />
           <button
             className="search__line-button"
