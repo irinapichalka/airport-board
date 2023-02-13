@@ -24,7 +24,7 @@ const SearchFlightsInput = ({ dateForSearch, code, setCode, getFlights }) => {
           <input
             className="search__line-input"
             type="text"
-            placeholder={code}
+            placeholder={`Номер рейсу ${code}`}
             value={text}
             onChange={handleChange}
           />
