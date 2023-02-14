@@ -35,11 +35,9 @@ export const setCode = (code) => {
   return action;
 };
 
-export const showSpinner = () => {
-  return {
-    type: SHOW_SPINNER,
-  };
-};
+export const showSpinner = () => ({
+  type: SHOW_SPINNER,
+});
 
 export const getFlights = (date) => {
   const thunkAction = function (dispatch) {
