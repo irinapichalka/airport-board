@@ -1,14 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import NoFound from "./NoFound";
+import Spinner from "./Spinner";
 
-const Table = ({ flights, code, text }) => {
+const Table = ({ flights, code, text, isFetching }) => {
   let filteredFlights = flights;
   if (code !== "") {
-    filteredFlights = flights.filter(
-      (flight) => flight["planeTypeID.code"] === code
-    );
+    filteredFlights = flights.filter((flight) => flight["fltNo"] === code);
   }
+  if (isFetching) {
+    return <Spinner />;
+  }
+
   if (filteredFlights.length === 0) {
     return <NoFound />;
   }
@@ -42,7 +45,8 @@ const Table = ({ flights, code, text }) => {
                 </span>
               </td>
               <td className="table__flight-time-field">
-                {flight.actual.slice(11, 16)}
+                {flight.actual.slice(11, 16) ||
+                  flight.timeToStand.slice(11, 16)}
               </td>
               <td className="table__flight-way">
                 {flight["airportToID.city"] || flight["airportFromID.city"]}
@@ -64,9 +68,7 @@ const Table = ({ flights, code, text }) => {
                   </span>
                 </div>
               </td>
-              <td className="table__flight-number">
-                {flight["planeTypeID.code"]}
-              </td>
+              <td className="table__flight-number">{flight["fltNo"]}</td>
               <td className="table__flight-more">
                 <a
                   className="table__flight-more-link"
@@ -88,6 +90,7 @@ Table.propTypes = {
   flights: PropTypes.array.isRequired,
   code: PropTypes.string,
   text: PropTypes.string.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 Table.defaultProps = {

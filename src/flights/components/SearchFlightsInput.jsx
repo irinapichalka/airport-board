@@ -4,10 +4,14 @@ import moment from "moment";
 import PropTypes from "prop-types";
 
 const SearchFlightsInput = ({ dateForSearch, code, setCode, getFlights }) => {
-  const [text, setMessage] = useState(code);
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    setText(code);
+  }, [code]);
 
   const handleChange = (event) => {
-    setMessage(event.target.value);
+    setText(event.target.value);
   };
   const handleSearchFlights = (event) => {
     event.preventDefault();
@@ -24,7 +28,7 @@ const SearchFlightsInput = ({ dateForSearch, code, setCode, getFlights }) => {
           <input
             className="search__line-input"
             type="text"
-            placeholder={`Номер рейсу ${code}`}
+            placeholder="Номер рейсу"
             value={text}
             onChange={handleChange}
           />

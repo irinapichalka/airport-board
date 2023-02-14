@@ -5,7 +5,14 @@ import * as qs from "qs";
 import moment from "moment";
 import PropTypes from "prop-types";
 
-function Departure({ flights, dateForSearch, code, changeDate, setCode }) {
+function Departure({
+  flights,
+  dateForSearch,
+  code,
+  changeDate,
+  setCode,
+  isFetching,
+}) {
   const history = useHistory();
 
   useEffect(() => {
@@ -25,7 +32,9 @@ function Departure({ flights, dateForSearch, code, changeDate, setCode }) {
 
   const text = "Вилетів о";
 
-  return <Table flights={flights} code={code} text={text} />;
+  return (
+    <Table flights={flights} code={code} text={text} isFetching={isFetching} />
+  );
 }
 
 Departure.propTypes = {
@@ -34,6 +43,7 @@ Departure.propTypes = {
   code: PropTypes.string,
   changeDate: PropTypes.func.isRequired,
   setCode: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 Departure.defaultProps = {

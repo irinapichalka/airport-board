@@ -1128,6 +1128,14 @@ body {
 .react-datepicker__portal .react-datepicker-time__header {
   font-size: 1.44rem;
 }
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .spinner {
   min-height: 300px;
   display: flex;

@@ -7,6 +7,7 @@ import {
   flightsSelector,
   dateSelector,
   codeSelector,
+  isFetchingSelector,
 } from "../flights.selectors";
 import * as flightsActions from "../flights.actions";
 import moment from "moment";
@@ -22,6 +23,7 @@ const Flights = ({
   changeDate,
   code,
   setCode,
+  isFetching,
 }) => {
   useEffect(() => {
     getFlights(moment(dateForSearch).format("DD-MM-YYYY"));
@@ -58,6 +60,7 @@ const Flights = ({
           changeDate={changeDate}
           getFlights={getFlights}
           setCode={setCode}
+          isFetching={isFetching}
         />
       </Route>
       <Route path="/arrival">
@@ -68,6 +71,7 @@ const Flights = ({
           changeDate={changeDate}
           getFlights={getFlights}
           setCode={setCode}
+          isFetching={isFetching}
         />
       </Route>
       <Route exact path="/">
@@ -84,6 +88,7 @@ Flights.propTypes = {
   changeDate: PropTypes.func.isRequired,
   code: PropTypes.string.isRequired,
   setCode: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 const mapDispatch = {
   getFlights: flightsActions.getFlights,
@@ -96,6 +101,7 @@ const mapState = (state) => {
     flights: flightsSelector(state),
     dateForSearch: dateSelector(state),
     code: codeSelector(state),
+    isFetching: isFetchingSelector(state),
   };
 };
 
